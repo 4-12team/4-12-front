@@ -11,7 +11,7 @@ function ProjectSection() {
   const { projectState } = useGetStack();
   const { targetRef: lastCardInfo, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
 
-  const { data, fetchNextPage } = useInfiniteQuery({
+  const { data, fetchNextPage, isFetching } = useInfiniteQuery({
     queryKey: ["project", "list", "projectList"],
     queryFn: ({ pageParam = 1 }) => projectApi.getProjectList({ ...projectState, page: pageParam }),
     initialPageParam: 1,
@@ -37,7 +37,7 @@ function ProjectSection() {
 
   return (
     <section className="col-start-2 mt-10">
-      <ProjectList projectList={data.pages} lastRef={lastCardInfo} />
+      <ProjectList projectList={data.pages} lastRef={lastCardInfo} isLoading={isFetching} />
     </section>
   );
 }
