@@ -1,7 +1,7 @@
 import { RefObject, useEffect } from "react";
 
-const useOutsideClick = (
-  ref: RefObject<HTMLDivElement>,
+const useOutsideClick = <T extends HTMLElement>(
+  ref: RefObject<T>,
   handleDropDownClose: () => void,
   exceptionRef?: RefObject<HTMLElement>
 ) => {
