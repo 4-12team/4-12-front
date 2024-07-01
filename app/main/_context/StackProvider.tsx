@@ -17,7 +17,6 @@ interface projectStateType {
   searchString: string;
   page: number;
   size: number;
-  limit: number;
 }
 
 interface StackContextType {
@@ -38,7 +37,6 @@ const StackContext = createContext<StackContextType>({
     searchString: "",
     page: 1,
     size: 1,
-    limit: 1,
   },
   setProjectState: () => {},
   isChangeStack: () => {},
@@ -59,13 +57,12 @@ function StackProvider({ children }: { children: ReactNode }) {
     searchString: "",
     page: 1,
     size: 16,
-    limit: 0,
   });
   const [stateUpdated, setStateUpdated] = useState(false); // projectState 상태가 업데이트 된 이후에 invalidateQueries 실행을 위한 함수
+  const projectListQuery = projectQueryKeys.list(projectState);
 
   useEffect(() => {
     if (stateUpdated) {
-      const projectListQuery = projectQueryKeys.list(projectState);
       reactQueryClient.invalidateQueries({ queryKey: projectListQuery.queryKey });
       setStateUpdated(false);
     }

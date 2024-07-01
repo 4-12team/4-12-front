@@ -15,6 +15,7 @@ import EnterText from "../../../_components/Comment/EnterText";
 import EnterButton from "../../../_components/Comment/EnterButton";
 import RatingBox from "./RatingBox";
 import CommentDropbox from "./CommentDropbox";
+import DetailLoading from "./DetailLoading";
 
 interface CommentSectionProps {
   projectId: number;
@@ -30,7 +31,7 @@ function CommentSection({ projectId, commentId }: CommentSectionProps) {
   const { data: ratingsData } = useQuery(projectQueryKeys.ratings(projectId, Number(userId)));
 
   if (!commentDetailData || !ratingsData) {
-    return <div>없음</div>;
+    return <DetailLoading />;
   }
 
   const transformedData = [

@@ -12,7 +12,7 @@ function ProjectSection() {
   const { projectState } = useGetStack();
   const { targetRef: lastCardInfo, isVisible } = useIntersectionObserver<HTMLDivElement>({ threshold: 1 });
 
-  const projectListQuery = projectQueryKeys.list({ page: 1, size: 12 });
+  const projectListQuery = projectQueryKeys.list({ page: 1, size: 16 });
 
   const { data, fetchNextPage } = useInfiniteQuery({
     queryKey: projectListQuery.queryKey,

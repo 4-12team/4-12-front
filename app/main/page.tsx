@@ -7,7 +7,7 @@ import SelectStack from "./_components/SelectStack/SelectStack";
 async function MainPage() {
   const queryClient = getQueryClient();
 
-  const projectListQuery = projectQueryKeys.list({ page: 1, size: 12 });
+  const projectListQuery = projectQueryKeys.list({ page: 1, size: 16 });
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: projectListQuery.queryKey,
